@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
         //get imput
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        bool s = Input.GetButton("Run");
         bool lockOn = _states.lockOn;
 
         //calculate the forwards vector
@@ -54,21 +53,6 @@ public class PlayerMovement : MonoBehaviour
             lockOnTarget = GetComponentInParent<CharacterStates>().nearestTarget;
         }
         _animator.SetFloat("LockOn", smoothLockOn);
-
-
-        // calculate the sprint multiplier
-        
-        if (s && move.magnitude > 0f) {
-            if (sprint <= 1) {
-                sprint += 0.01f;
-            }
-        } else {
-            if (sprint >= 0) {
-                sprint -= 0.05f;
-            }
-        }
-        if (sprint < 0) { sprint = 0; }
-        if (sprint > 1) { sprint = 1; }
 
         // calculate the rotation for the player
         if (!lockOn) {
@@ -102,9 +86,7 @@ public class PlayerMovement : MonoBehaviour
             if (!lockOn) {
                 _animator.SetFloat("Move", move.magnitude);
                 _animator.SetFloat("Turn", turnAmount);
-                _animator.SetFloat("Sprint", sprint);
-                float totalMove = move.magnitude + (sprint * 2);
-                _moveDir = transform.forward * totalMove;
+                _moveDir = transform.forward * move.magnitude;
             } else {
                 _animator.SetFloat("Move", v);
                 _animator.SetFloat("Turn", h);
