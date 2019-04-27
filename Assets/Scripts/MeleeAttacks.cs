@@ -19,15 +19,13 @@ public class MeleeAttacks : MonoBehaviour {
         bool a = Input.GetButtonDown("Melee");
         bool b = Input.GetButton("Block");
         
-
-        float isRunning = _animator.GetFloat("Sprint");
         float isLockedOn = _animator.GetFloat("LockOn");
         bool isBlocking = _animator.GetBool("Blocking");
 
 
 
         //Attacking
-        if (a && !isBlocking && isRunning == 0) {
+        if (a && !isBlocking) {
             int currentAttack = _animator.GetInteger("Attack");
 
             if (currentAttack == 0) {
@@ -40,7 +38,7 @@ public class MeleeAttacks : MonoBehaviour {
         }
 
         //Blocking
-        if (b && isLockedOn > 0) {
+        if (b) {
             _animator.SetBool("Blocking", true);
         } else {
             _animator.SetBool("Blocking", false);
