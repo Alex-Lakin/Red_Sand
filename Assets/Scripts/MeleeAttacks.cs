@@ -2,10 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class MeleeAttack
+{
+    public float force;
+    public int hitReaction;
+    public GameObject weaponHitbox;
+}
+
 public class MeleeAttacks : MonoBehaviour {
 
     private Animator _animator;
     private bool comboWindowOpen = false;
+    [SerializeField] private MeleeAttack[] attackList;
 
     // Use this for initialization
     void Start () {
@@ -19,7 +28,7 @@ public class MeleeAttacks : MonoBehaviour {
         bool a = Input.GetButtonDown("Melee");
         bool b = Input.GetButton("Block");
         
-        float isLockedOn = _animator.GetFloat("LockOn");
+        //float isLockedOn = _animator.GetFloat("LockOn");
         bool isBlocking = _animator.GetBool("Blocking");
 
 
@@ -54,6 +63,18 @@ public class MeleeAttacks : MonoBehaviour {
         _animator.SetInteger("Attack", 0);
         _animator.applyRootMotion = false;
         comboWindowOpen = false;
+    }
+
+    void DamageWindowOpen(int attacknumber) {
+        Hitbox hitBox = attackList[attacknumber].weaponHitbox.GetComponent<Hitbox>();
+        hitBox.force = attackList[attacknumber].force;
+        hitBox.hitReaction = attackList[attacknumber].hitReaction;
+    }
+
+    void DamageWindowClosed(int attacknumber) {
+        Hitbox hitBox = attackList[attacknumber].weaponHitbox.GetComponent<Hitbox>();
+        hitBox.force = 0;
+        hitBox.hitReaction = 0;
     }
 
     void ComboWindowOpen()  {

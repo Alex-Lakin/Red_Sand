@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float RotationSpeed;
     [SerializeField] private float Gravity = 20f;
     private Vector3 _moveDir = Vector3.zero;
-    private float sprint = 0f;
     private bool movementLock = false;
     //Lockon
     private Transform lockOnTarget;
