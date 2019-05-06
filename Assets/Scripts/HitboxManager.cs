@@ -20,6 +20,7 @@ public class HitboxManager : MonoBehaviour {
 
     void HitReactionStart() {
         _animator.SetInteger("Attack", 0);
+        _animator.SetInteger("Hit Reaction", 0);
         //_animator.applyRootMotion = true;
     }
 

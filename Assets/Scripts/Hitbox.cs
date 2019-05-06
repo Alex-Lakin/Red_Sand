@@ -6,7 +6,7 @@ public class Hitbox : MonoBehaviour {
     
     private HitboxManager myManager;
     public float force = 0;
-    [SerializeField] public int hitReaction = 1;
+    public int hitReaction = 0;
 
     // Use this for initialization
     void Start () {
