@@ -9,9 +9,15 @@ public class CharacterStates : MonoBehaviour {
     [HideInInspector] public bool lockOn = false;
     [HideInInspector] public Transform nearestTarget;
 
+    private Inputs _inputs;
+
+    private void Start() {
+        _inputs = GetComponent<Inputs>();
+    }
+
     // Update is called once per frame
     void Update () {
-        bool l = Input.GetButton("LockOn");
+        bool l = _inputs.lockOn;
         
         //enter/exit lockon mode
         if (l) {

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PickUpDetector : MonoBehaviour {
 
+    Inputs _inputs;
     List<PickUp> allPickUps;
     [SerializeField] private float maxPickUpDist;
 
     // Use this for initialization
     void Start()
     {
+        _inputs = transform.root.GetComponent<Inputs>();
         allPickUps = new List<PickUp>();
 
         findAndAddAllPickUps(allPickUps);
@@ -19,7 +21,7 @@ public class PickUpDetector : MonoBehaviour {
     void Update()
     {
         //Get Imput
-        bool p = Input.GetButtonDown("PickUp");
+        bool p = _inputs.pickUp;
 
         if (p) {
             PickUp closestPickUp = findClosestPickUp(allPickUps);

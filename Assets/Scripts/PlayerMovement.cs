@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator _animator;
     private CharacterController _characterController;
     private CharacterStates _states;
+    private Inputs _inputs;
     //Movement
     [SerializeField] private float Speed;
     [SerializeField] private float RotationSpeed;
@@ -23,14 +24,15 @@ public class PlayerMovement : MonoBehaviour
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
         _states = GetComponent<CharacterStates>();
+        _inputs = GetComponent<Inputs>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //get imput
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = _inputs.horizontal;
+        float v = _inputs.vertical;
         bool lockOn = _states.lockOn;
 
         //calculate the forwards vector

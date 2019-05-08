@@ -5,14 +5,11 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour {
 
     private CharacterStates _states;
+    private Inputs _inputs;
 
     [SerializeField] private float cameraMoveSpeed = 120.0f;
     [SerializeField] private float clampAngle = 80.0f;
     [SerializeField] private float inputSensitivity = 150.0f;
-    [SerializeField] private float InputX;
-    [SerializeField] private float InputZ;
-    [SerializeField] private float smoothX;
-    [SerializeField] private float smoothY;
     [SerializeField] private Transform cameraFollowObj;
 
     private float rotX = 0.0f;
@@ -26,13 +23,14 @@ public class CameraFollow : MonoBehaviour {
         rotY = rot.y;
         rotX = rot.x;
         _states = transform.parent.GetComponent<CharacterStates>();
+        _inputs = transform.parent.GetComponent<Inputs>();
     }
 
     // Update is called once per frame
     void Update() {
         //Get Inputs
-        InputX = Input.GetAxis("Mouse X");
-        InputZ = Input.GetAxis("Mouse Y");
+        float InputX = _inputs.camX;
+        float InputZ = _inputs.camY;
         bool lockOn = _states.lockOn;
 
         //Camera behavour

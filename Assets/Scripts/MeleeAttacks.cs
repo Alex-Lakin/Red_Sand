@@ -12,6 +12,7 @@ public class MeleeAttack
 public class MeleeAttacks : MonoBehaviour {
 
     private Animator _animator;
+    private Inputs _inputs;
     private bool comboWindowOpen = false;
     [SerializeField] private Transform weaponHolder;
     [SerializeField] private MeleeAttack[] attackList;
@@ -19,14 +20,15 @@ public class MeleeAttacks : MonoBehaviour {
     // Use this for initialization
     void Start () {
         _animator = GetComponent<Animator>();
+        _inputs = GetComponent<Inputs>();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
         //Get Imput
-        bool a = Input.GetButtonDown("Melee");
-        bool b = Input.GetButton("Block");
+        bool a = _inputs.melee;
+        bool b = _inputs.block;
         
         //float isLockedOn = _animator.GetFloat("LockOn");
         bool isBlocking = _animator.GetBool("Blocking");
