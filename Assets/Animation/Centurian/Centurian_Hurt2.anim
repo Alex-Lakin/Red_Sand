@@ -44588,14 +44588,28 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0
+    functionName: lockMovement
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.041666668
     functionName: HitReactionStart
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.2083334
+  - time: 1.1666666
     functionName: HitReactionEnd
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.2083334
+    functionName: unlockMovement
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -7,6 +7,7 @@ public class MeleeAttack
 {
     public float force;
     public int hitReaction;
+    public Transform weaponHolder;
 }
 
 public class MeleeAttacks : MonoBehaviour {
@@ -14,7 +15,6 @@ public class MeleeAttacks : MonoBehaviour {
     private Animator _animator;
     private Inputs _inputs;
     private bool comboWindowOpen = false;
-    [SerializeField] private Transform weaponHolder;
     [SerializeField] private MeleeAttack[] attackList;
 
     // Use this for initialization
@@ -68,13 +68,13 @@ public class MeleeAttacks : MonoBehaviour {
     }
 
     void DamageWindowOpen(int attacknumber) {
-        Hitbox hitBox = weaponHolder.GetComponentInChildren<Hitbox>();
+        Hitbox hitBox = attackList[attacknumber].weaponHolder.GetComponentInChildren<Hitbox>();
         hitBox.force = attackList[attacknumber].force;
         hitBox.hitReaction = attackList[attacknumber].hitReaction;
     }
 
-    void DamageWindowClosed() {
-        Hitbox hitBox = weaponHolder.GetComponentInChildren<Hitbox>();
+    void DamageWindowClosed(int attacknumber) {
+        Hitbox hitBox = attackList[attacknumber].weaponHolder.GetComponentInChildren<Hitbox>();
         hitBox.force = 0;
         hitBox.hitReaction = 0;
     }
