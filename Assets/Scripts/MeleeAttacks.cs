@@ -16,6 +16,7 @@ public class MeleeAttacks : MonoBehaviour {
     private Inputs _inputs;
     private bool comboWindowOpen = false;
     [SerializeField] private MeleeAttack[] attackList;
+    [SerializeField] private Transform shieldTransform;
 
     // Use this for initialization
     void Start () {
@@ -51,8 +52,10 @@ public class MeleeAttacks : MonoBehaviour {
         //Blocking
         if (b) {
             _animator.SetBool("Blocking", true);
+            shieldTransform.GetComponent<Hitbox>().isBlocking = true;
         } else {
             _animator.SetBool("Blocking", false);
+            shieldTransform.GetComponent<Hitbox>().isBlocking = false;
         }
     }
     
@@ -65,6 +68,10 @@ public class MeleeAttacks : MonoBehaviour {
         _animator.SetInteger("Attack", 0);
         _animator.applyRootMotion = false;
         comboWindowOpen = false;
+    }
+
+    void BlockedEnd() {
+        _animator.SetInteger("Block Reaction", 0);
     }
 
     void DamageWindowOpen(int attacknumber) {

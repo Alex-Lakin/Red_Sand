@@ -18,6 +18,10 @@ public class HitboxManager : MonoBehaviour {
         _animator.SetInteger("Hit Reaction", hitReact);
     }
 
+    public void AttackBlocked(int blockReact) {
+        _animator.SetInteger("Block Reaction", blockReact);
+    }
+
     void HitReactionStart() {
         _animator.SetInteger("Attack", 0);
         _animator.SetInteger("Hit Reaction", 0);

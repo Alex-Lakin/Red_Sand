@@ -7,6 +7,7 @@ public class Hitbox : MonoBehaviour {
     private HitboxManager myManager;
     public float force = 0;
     public int hitReaction = 0;
+    public bool isBlocking = false;
 
     // Use this for initialization
     void Start () {
@@ -15,11 +16,19 @@ public class Hitbox : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collider) {
         HitboxManager colHitBox = collider.GetComponent<HitboxManager>();
-        Debug.Log(colHitBox);
         if (colHitBox != null) {
             if (colHitBox != myManager) {
                 if (force > 0) {
                     colHitBox.TakeDamage(force, hitReaction);
+                }
+            }
+        } else {
+            Hitbox hitBox = collider.GetComponent<Hitbox>();
+            if (hitBox.isBlocking == true) {
+                if (collider.transform.root != transform.root) {
+                    if (force > 0) {
+                        myManager.AttackBlocked(hitReaction);
+                    }
                 }
             }
         }
