@@ -14,8 +14,10 @@ public class HitboxManager : MonoBehaviour {
     }
 
     public void TakeDamage(float damage, int hitReact) {
-        _states.hp -= damage;
-        _animator.SetInteger("Hit Reaction", hitReact);
+        if (_states.invinsibilityFrames == false) {
+            _states.hp -= damage;
+            _animator.SetInteger("Hit Reaction", hitReact);
+        }
     }
 
     public void AttackBlocked(int blockReact) {
@@ -23,14 +25,16 @@ public class HitboxManager : MonoBehaviour {
     }
 
     void HitReactionStart() {
-        _animator.SetInteger("Attack", 0);
         _animator.SetInteger("Hit Reaction", 0);
+        _animator.SetInteger("Attack", 0);
         _animator.applyRootMotion = true;
+        _states.invinsibilityFrames = true;
     }
 
     void HitReactionEnd() {
         _animator.SetInteger("Hit Reaction", 0);
         _animator.SetInteger("Attack", 0);
         _animator.applyRootMotion = false;
+        _states.invinsibilityFrames = false;
     }
 }

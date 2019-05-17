@@ -15,18 +15,13 @@ public class Hitbox : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider collider) {
-        HitboxManager colHitBox = collider.GetComponent<HitboxManager>();
-        if (colHitBox != null) {
-            if (colHitBox != myManager) {
+        Hitbox hitBox = collider.GetComponent<Hitbox>();
+        if (hitBox != null) {
+            if (hitBox.myManager != myManager) {
                 if (force > 0) {
-                    colHitBox.TakeDamage(force, hitReaction);
-                }
-            }
-        } else {
-            Hitbox hitBox = collider.GetComponent<Hitbox>();
-            if (hitBox.isBlocking == true) {
-                if (collider.transform.root != transform.root) {
-                    if (force > 0) {
+                    if (!hitBox.isBlocking) {
+                        hitBox.myManager.TakeDamage(force, hitReaction);
+                    } else {
                         myManager.AttackBlocked(hitReaction);
                     }
                 }

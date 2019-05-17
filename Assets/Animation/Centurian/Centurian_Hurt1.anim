@@ -28388,14 +28388,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.75
+  - time: 0.625
     functionName: HitReactionEnd
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.7916667
+  - time: 0.6666667
     functionName: unlockMovement
     data: 
     objectReferenceParameter: {fileID: 0}

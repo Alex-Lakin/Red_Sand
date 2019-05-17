@@ -6,6 +6,7 @@ public class CharacterStates : MonoBehaviour {
 
     public float hp;
     [HideInInspector] public bool grounded = false;
+    [HideInInspector] public bool invinsibilityFrames = false;
     [HideInInspector] public bool lockOn = false;
     [HideInInspector] public Transform nearestTarget;
 

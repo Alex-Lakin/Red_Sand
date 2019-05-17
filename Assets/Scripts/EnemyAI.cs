@@ -44,6 +44,8 @@ public class EnemyAI : MonoBehaviour {
                 moveSpeed = 0f;
             }
 
+            int randAttack = Random.Range(0,100);
+            if (randAttack == 3)
             _animator.SetInteger("Attack", 1);
         }
 
